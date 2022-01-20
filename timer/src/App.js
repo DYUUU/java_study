@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <Header contents="Header"></Header>
-      <Child contents="데이터" />
+      <Child contents="데이터가 바뀜" object={{ "key": 1, value: "obj" }} />
       <Footer contents="Footer"></Footer>
     </div>
   );
