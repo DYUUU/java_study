@@ -3,3 +3,7 @@
 - firebase 공부하기 (2주)
   - hosting 부분 (구글에서 firebase host React)
 - react tutorial 자료 읽기
+
+# 22-01-20
+- 
+- 
