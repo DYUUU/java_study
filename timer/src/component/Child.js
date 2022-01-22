@@ -7,8 +7,8 @@ function Child({ contents }) {
     <div className="App">
       <span>내용:</span>
       {a}
-      <input type="button" value="button" onClick={() => { setA("바꿈") }}></input>
-    </div>
+      <input type="button" value="button" onClick={() => { setA("바꿈") }} style={{ width: "120px", backgroundColor: "yellow" }}></input>
+    </div >
   );
 }
 
