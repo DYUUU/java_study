@@ -5,8 +5,9 @@ import Child  from './component/Child';
 function App() {
   return (
     <div className="App">
-      Hello World
-      <Child contents="Hello World"/>
+      메인 App.js
+      <br/>
+      <Child contents="부모클래스에서 자식 클래스에서 보낸 내용"/>
     </div>
   );
 }
