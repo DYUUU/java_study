@@ -12,12 +12,9 @@ def solution(record):
         elif(tmp[0]=="Leave"):
             answer.append(tmp[1]+"님이 나갔습니다.")
     # 유저 이름 변경하기 (후처리)
-    for usr in userlist.keys():
-        for i in range(0,len(answer)):
-            answer[i]=answer[i].replace(usr,userlist.get(usr))
-    # 왜 안 되는 걸까요?........
-    print(answer)
-    print(userlist)
+    for i in range (len(answer)):
+        idx = answer[i].find("님")
+        answer[i]=answer[i].replace(answer[i][:idx],userlist.get(answer[i][:idx]))
     return answer
 
 record=["Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"]
