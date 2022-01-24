@@ -15,4 +15,5 @@
 
 # 22-01-24
 - CI/CD 제공으로 인한 firebase 자동 depoly error 문제 이해하기
+- programmers 기능개발 문제 풀이
 

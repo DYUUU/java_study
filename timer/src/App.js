@@ -7,9 +7,9 @@ import Footer from './component/Footer';
 function App() {
   return (
     <div className="App">
-      <Header contents="Header"></Header>
+      {/* <Header contents="Header"></Header> */}
       <Child contents="데이터가 바뀜" object={{ "key": 1, value: "obj" }} />
-      <Footer contents="Footer"></Footer>
+      {/* <Footer contents="Footer"></Footer> */}
     </div>
   );
 }
