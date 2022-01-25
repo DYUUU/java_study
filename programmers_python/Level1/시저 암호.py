@@ -12,20 +12,18 @@ def solution(s, n):
             continue
         asciiValue = ord(str) + n
         # 대문자
-        if(ord(str)>=ord("A") and ord(str) <= ord("Z")):
-            if(asciiValue >= ord("Z")):
-                answer += chr(asciiValue - 26)
-            else:
-                answer += chr(asciiValue)
+        if(ord(str) >= ord("A") and ord(str) <= ord("Z")):         
+            if(asciiValue>ord("Z")):
+                asciiValue -= 26
         # 소문자
-        elif(ord(str)>=ord("a") and ord(str) <= ord("z")):
-            if(asciiValue >= ord("z")):
-                answer += chr(asciiValue - 26)
-            else:
-                answer += chr(asciiValue)
+        if(ord(str) >= ord("a") and ord(str) <= ord("z")):
+            if(asciiValue>ord("z")):
+                asciiValue -= 26
+        answer += chr(asciiValue)
+        # 소문자
     print(answer)
     return answer
 
-s="X Z z"
+s="a A"
 n=25
 solution(s,n)
