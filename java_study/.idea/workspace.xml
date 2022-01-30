@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e04469e4-5ee4-4ad2-816f-fe132df8e15f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/theory/자바란_220126.md" beforeDir="false" afterPath="$PROJECT_DIR$/theory/자바란_220126.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backjoon_python/empty.py.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../python_study/programmers_python/Level3/empty.py.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_struct_python/single linked list.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python_study/data_struct_python/single linked list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../programmers_python/Level1/두 개 뽑아서 더하기.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python_study/programmers_python/Level1/두 개 뽑아서 더하기.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../programmers_python/Level1/스킬체크테스트 문제1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python_study/programmers_python/Level1/스킬체크테스트 문제1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../programmers_python/Level1/시저암호.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python_study/programmers_python/Level1/시저암호.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../programmers_python/Level1/행렬의 덧셈.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python_study/programmers_python/Level1/행렬의 덧셈.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../programmers_python/Level2/오픈채팅방.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python_study/programmers_python/Level2/오픈채팅방.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../programmers_python/Level3/empty.py.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +32,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Fan_IoT_v3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -33,6 +47,9 @@
       <option name="presentableId" value="Default" />
       <updated>1643261586539</updated>
       <workItem from="1643261586570" duration="23000" />
+      <workItem from="1643551943671" duration="38000" />
+      <workItem from="1643552395251" duration="97000" />
+      <workItem from="1643552838737" duration="382000" />
     </task>
     <servers />
   </component>
