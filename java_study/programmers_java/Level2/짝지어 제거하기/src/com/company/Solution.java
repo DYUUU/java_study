@@ -1,28 +1,30 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Solution {
     public int solution(String s) {
-        StringBuffer sb = new StringBuffer(s);
+        int[] alphabet = new int[26];
+        boolean flag = false;
 
-        if (sb.length() % 2 != 0)
-            return 0;
+        if (s.length() % 2 != 0) return 0;
         else {
-            int i = 0;
-            while (sb.length() > 0) {
-                if (i < sb.length() - 1) {
-                    if (sb.charAt(i) == sb.charAt(i + 1)) {
-                        sb.replace(i, i + 2, "");
-                        i = 0;
-                    } else
-                        i++;
+            for (int i = 0; i < s.length(); i++) {
+                alphabet[s.charAt(i) - 'a']++;
+                if (i + 1 == s.length()) break;
+                if (s.charAt(i) == s.charAt(i + 1)) {
+                    flag = true;
                 }
-                else
-                    break;
             }
-        }
-        if (sb.length() == 0)
+       }
+        if (flag) {
+            for(int j = 0 ; j < alphabet.length;j++)
+            {
+                if(alphabet[j]%2!=0)
+                    return 0;
+            }
             return 1;
-        else
+        } else
             return 0;
     }
 }
