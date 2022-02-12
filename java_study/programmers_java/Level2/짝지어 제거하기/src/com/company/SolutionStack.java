@@ -1,37 +1,23 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.Stack;
 
 public class SolutionStack {
     public int solution(String s) {
         Stack<Character> stack = new Stack<>();
-        StringBuilder sb = new StringBuilder();
 
-        //  for문 하나 사용
         for (int i = 0; i < s.length(); i++) {
-            stack.push(s.charAt(i));
-        }
-
-        if (stack.size() % 2 != 0)
-            return 0;
-        else {
-            for (int j = 0; j < s.length(); j++) {
-                if (!stack.isEmpty()) {
-                    sb.append(stack.pop());
-                    if (sb.length() > 1) {
-                        if (sb.charAt(sb.length() - 2) == sb.charAt(sb.length() - 1))
-                            sb.delete(sb.length() - 2, sb.length());
-                    } else if (sb.charAt(sb.length() - 1) == stack.peek()) {
-                        sb.append(stack.pop());
-                        sb.delete(sb.length() - 2, sb.length());
-                    }
+            if (stack.isEmpty()) {
+                stack.push(s.charAt(i));
+            } else {
+                if (stack.peek() == s.charAt(i)) {
+                    stack.pop();
                 } else
-                    break;
+                    stack.push(s.charAt(i));
             }
         }
 
-        if (sb.length() == 0)
+        if (stack.size() == 0)
             return 1;
         else
             return 0;
