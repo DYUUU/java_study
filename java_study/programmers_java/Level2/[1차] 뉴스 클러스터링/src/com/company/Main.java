@@ -4,8 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        String str1 = "aa1+aa2";
-        String str2 = "AAAA12";
+        String str1 = "handshake";
+        String str2 = "shake hands";
 
         Solution sol = new Solution();
 

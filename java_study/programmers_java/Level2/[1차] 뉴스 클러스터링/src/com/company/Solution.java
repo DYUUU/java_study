@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.ArrayList;
 
 public class Solution {
@@ -7,19 +8,17 @@ public class Solution {
         ArrayList<String> strArrList2 = new ArrayList<>();
         int sizeOfIntersection = 0;
         int sizeOfSumOfSets = 0;
-        float jacard = 0;
 
         initArrList(str1, strArrList1);
         initArrList(str2, strArrList2);
 
-        sizeOfIntersection=getIntersection(strArrList1,strArrList2);
-        sizeOfSumOfSets = strArrList1.size()+strArrList2.size()-sizeOfIntersection;
+        sizeOfIntersection = getIntersection(strArrList1, strArrList2);
+        sizeOfSumOfSets = strArrList1.size() + strArrList2.size();
 
         if (sizeOfSumOfSets == 0) {
             return 65536;
         } else {
-            jacard = ((float)sizeOfIntersection / (float)sizeOfSumOfSets);
-            return (int) (jacard * 65536);
+            return (int) (((float) sizeOfIntersection / (float) sizeOfSumOfSets) * 65536);
         }
     }
 
@@ -28,34 +27,41 @@ public class Solution {
             , ArrayList<String> strArr2) {
 
         ArrayList<String> strIntersection = new ArrayList<>();
-        int min = Math.min(strArr1.size(), strArr2.size());
 
-        for (int i = 0; i < min; i++) {
-            if (min == strArr1.size()) {
-                if (strArr2.contains(strArr1.get(i))) {
-                    strIntersection.add(strArr1.get(i));
-                }
-            } else {
-                if (strArr1.contains(strArr2.get(i))) {
-                    strIntersection.add(strArr2.get(i));
-                }
-            }
+        if (strArr1.size() >= strArr2.size()) {
+            loop(strArr1, strArr2, strIntersection);
+        }
+        else{
+            loop(strArr2, strArr1, strIntersection);
         }
 
         return strIntersection.size();
     }
 
+    private void loop(ArrayList<String> strArr1, ArrayList<String> strArr2, ArrayList<String> strIntersection) {
+        for (int i = 0; i < strArr2.size(); i++) {
+            for (int j = 0; j < strArr1.size(); j++) {
+                if (strArr2.get(i).equals(strArr1.get(j))) {
+                    strIntersection.add(strArr1.get(j));
+                    strArr1.remove(j);
+                    j=0;
+                    break;
+                }
+            }
+        }
+    }
+
     public void initArrList(String str, ArrayList<String> strArr) {
         char ch1 = ' ';
         char ch2 = ' ';
-        String tmp = "";
+        str = str.toUpperCase();
         for (int i = 0; i < str.length() - 1; i++) {
-            ch1 = Character.toUpperCase(str.charAt(i));
-            ch2 = Character.toUpperCase(str.charAt(i + 1));
-            tmp = String.valueOf(ch1) + ch2;
+            ch1 = str.charAt(i);
+            ch2 = str.charAt(i + 1);
+
             if (ch1 >= 'A' && ch1 <= 'Z'
                     && ch2 >= 'A' && ch2 <= 'Z')
-                    strArr.add(tmp);
+                strArr.add(String.valueOf(ch1) + ch2);
         }
     }
 }

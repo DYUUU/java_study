@@ -8,6 +8,7 @@ public class SolutionStack {
         Stack<Character> stack = new Stack<>();
         StringBuilder sb = new StringBuilder();
 
+        //  for문 하나 사용
         for (int i = 0; i < s.length(); i++) {
             stack.push(s.charAt(i));
         }
