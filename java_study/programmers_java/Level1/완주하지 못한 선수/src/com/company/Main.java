@@ -5,10 +5,10 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         String[] participant = {
-                "marina", "josipa", "nikola", "vinko", "filipa"
+                "mislav", "stanko", "mislav", "ana"
         };
         String[] completion = {
-                "josipa", "filipa", "marina", "nikola"
+                "stanko", "ana", "mislav"
         };
 
         Solution sol = new Solution();
