@@ -1,25 +1,21 @@
 package com.company;
 
 
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.HashMap;
 
 public class Solution {
     public String solution(String[] participant, String[] completion) {
-        Stack stack = new Stack();
-
-        Arrays.sort(participant);
-        Arrays.sort(completion);
-
-        for (int i = 0; i < participant.length; i++) {
-            if (stack.isEmpty())
-                stack.push(participant[i]);
-            else if (stack.peek() == stack.push(completion[i-1])) {
-                stack.pop();
-                stack.pop();
-            }
+        HashMap hashMap = new HashMap();
+        int tmp = 0;
+        for(int i = 0; i <completion.length;i++)
+        {
+            hashMap.put(completion[i],i);
         }
-
-        return String.valueOf(stack.peek());
+        for(int i = 0; i<participant.length;i++)
+        {
+            if(!hashMap.containsKey(participant[i]))
+                tmp = i;
+        }
+        return participant[tmp];
     }
 }
