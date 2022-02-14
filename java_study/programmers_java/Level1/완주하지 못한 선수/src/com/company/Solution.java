@@ -1,29 +1,25 @@
 package com.company;
 
 
+import java.util.Arrays;
+import java.util.Stack;
+
 public class Solution {
     public String solution(String[] participant, String[] completion) {
-        boolean[] answer = new boolean[completion.length];
-        boolean flag = false;
-        int tmp = 0;
+        Stack stack = new Stack();
+
+        Arrays.sort(participant);
+        Arrays.sort(completion);
 
         for (int i = 0; i < participant.length; i++) {
-            for (int j = 0; j < completion.length; j++)
-                if (!answer[j]) {
-                    if (participant[i] == completion[j]) {
-                        answer[j] = true;
-                        flag = true;
-                        break;
-                    }
-                }
-            if (!flag) {
-                tmp = i;
-                break;
+            if (stack.isEmpty())
+                stack.push(participant[i]);
+            else if (stack.peek() == stack.push(completion[i-1])) {
+                stack.pop();
+                stack.pop();
             }
-            else
-                flag = false;
         }
 
-        return participant[tmp];
+        return String.valueOf(stack.peek());
     }
 }
