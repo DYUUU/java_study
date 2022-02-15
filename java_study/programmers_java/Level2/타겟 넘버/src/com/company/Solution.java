@@ -6,7 +6,8 @@ class Solution {
     public int count;
     public int cnt = 0;
 
-    public void DFS(int size, int current) {cnt++;
+    public void DFS(int size, int current) {
+        cnt++;
         if (current == copyNumbers.length - 1) {
             if (copyTarget == size) {
                 count += 1;
