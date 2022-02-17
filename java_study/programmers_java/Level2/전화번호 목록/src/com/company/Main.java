@@ -4,9 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        String[] phone_book = {"123", "456", "789"};
+        String[] phone_book = {"1195524421","97674223","119"};
 
         Solution sol = new Solution();
-        sol.solution(phone_book);
+        System.out.println(sol.solution(phone_book));
     }
 }
