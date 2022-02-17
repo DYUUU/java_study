@@ -3,19 +3,25 @@ package com.company;
 import java.util.HashSet;
 
 class Solution {
-    public boolean[] prime = new boolean[1001];
-    HashSet<Integer> intHasset = new HashSet<Integer>();
+    public boolean[] prime = new boolean[100000001];
+    public HashSet<Integer> intHasset = new HashSet<Integer>();
+    public int index = 0;
 
     public void DFS(String num, String primeNum, int current) {
-        if (!primeNum.equals("") && Integer.valueOf(primeNum) > 1) {
+        if (!primeNum.equals("")) {
             if (!prime[Integer.valueOf(primeNum)])
                 intHasset.add(Integer.valueOf(primeNum));
         }
-        else if(current == num.length())
-            return;
-        else {
-                DFS(num, primeNum + num.charAt(current), current + 1);
-                DFS(num, primeNum, current + 1);
+        if (current == num.length()) {
+            if (index == num.length()-1)
+                return;
+            else {
+                index++;
+                DFS(num, String.valueOf(num.charAt(index)), 0);
+            }
+        } else {
+            DFS(num, primeNum, current + 1);
+            DFS(num, primeNum + num.charAt(current), current + 1);
 
         }
     }
@@ -23,8 +29,8 @@ class Solution {
     public void getPrime(boolean[] prime) {
         prime[0] = true;
         prime[1] = true;
-        for (int i = 2; i <= Math.sqrt(1000); i++) {
-            for (int j = i; j <= 1000 / i; j++)
+        for (int i = 2; i <= Math.sqrt(100000000); i++) {
+            for (int j = i; j <= 100000000 / i; j++)
                 prime[i * j] = true;
         }
     }
