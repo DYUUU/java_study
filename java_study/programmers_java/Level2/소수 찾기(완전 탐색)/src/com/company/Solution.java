@@ -1,34 +1,32 @@
 package com.company;
+
+
 import java.util.HashSet;
 
 class Solution {
     public boolean[] prime = new boolean[100000001];
-    public HashSet<Integer> intHasset = new HashSet<Integer>();
-    int cnt;
+    public HashSet<Integer> intHashSet = new HashSet<Integer>();
+    boolean visit[];
 
-    public void DFS(String src, String makePrime, int current, int check) {
-        if (current == src.length() || makePrime.length() == src.length()) {
-            if (!makePrime.equals("")) {
-                int makePrimeToInt = Integer.valueOf(makePrime);
-                if (!prime[makePrimeToInt])
-                    intHasset.add(makePrimeToInt);
-            }
-            if (makePrime.length() < src.length()) {
-                int tmpCheck = check + 1;
-                if (tmpCheck == src.length()) {
-                    DFS(src, makePrime + src.charAt(0), 0, 0);
-                } else {
-                    DFS(src, makePrime + src.charAt(tmpCheck), check + 1, tmpCheck);
+    public void DFS(String src, String makePrime, int current) {
+        if (current == src.length()) {
+            if (makePrime.equals("")) return;
+            else {
+                int num = Integer.valueOf(makePrime);
+                if (!prime[num]) {
+                    intHashSet.add(num);
                 }
             }
-
-
         } else {
-            DFS(src, makePrime + src.charAt(current), current + 1, current);
-            DFS(src, makePrime, current + 1, check);
-
+            for (int i = 0; i < src.length(); i++) {
+                if (!visit[i]) {
+                    visit[i] = true;
+                    DFS(src, makePrime + src.charAt(i), current + 1);
+                    DFS(src, makePrime, current + 1);
+                    visit[i] = false;
+                }
+            }
         }
-
     }
 
     public void getPrime(boolean[] prime) {
@@ -42,11 +40,11 @@ class Solution {
 
     public int solution(String numbers) {
         getPrime(prime);
+        visit = new boolean[numbers.length()];
+        DFS(numbers, "", 0);
 
-        DFS(numbers, "", 0, 0);
+        System.out.println(intHashSet.toString());
 
-        System.out.println(intHasset.toString());
-
-        return intHasset.size();
+        return intHashSet.size();
     }
 }
