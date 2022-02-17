@@ -1,31 +1,34 @@
 package com.company;
-
 import java.util.HashSet;
 
 class Solution {
     public boolean[] prime = new boolean[100000001];
     public HashSet<Integer> intHasset = new HashSet<Integer>();
-    public int index = 0;
+    int cnt;
 
-    public void DFS(String num, String primeNum, int current) {
-        if (current == num.length()) {
-            if (primeNum.length() > 0 && !prime[Integer.valueOf(primeNum)])
-                intHasset.add(Integer.valueOf(primeNum));
-            else if (index < num.length()) {
-                index++;
-                if (index == num.length())
-                    return;
-                else
-                    DFS(num, String.valueOf(num.charAt(index)), 0);
+    public void DFS(String src, String makePrime, int current, int check) {
+        if (current == src.length() || makePrime.length() == src.length()) {
+            if (!makePrime.equals("")) {
+                int makePrimeToInt = Integer.valueOf(makePrime);
+                if (!prime[makePrimeToInt])
+                    intHasset.add(makePrimeToInt);
             }
+            if (makePrime.length() < src.length()) {
+                int tmpCheck = check + 1;
+                if (tmpCheck == src.length()) {
+                    DFS(src, makePrime + src.charAt(0), 0, 0);
+                } else {
+                    DFS(src, makePrime + src.charAt(tmpCheck), check + 1, tmpCheck);
+                }
+            }
+
+
         } else {
-            if (index > 0 && index == current)
-                DFS(num, primeNum, current + 1);
-            else {
-                DFS(num, primeNum + num.charAt(current), current + 1);
-                DFS(num, primeNum, current + 1);
-            }
+            DFS(src, makePrime + src.charAt(current), current + 1, current);
+            DFS(src, makePrime, current + 1, check);
+
         }
+
     }
 
     public void getPrime(boolean[] prime) {
@@ -40,7 +43,7 @@ class Solution {
     public int solution(String numbers) {
         getPrime(prime);
 
-        DFS(numbers, "", 0);
+        DFS(numbers, "", 0, 0);
 
         System.out.println(intHasset.toString());
 
