@@ -8,29 +8,31 @@ class Solution {
     public int index = 0;
 
     public void DFS(String num, String primeNum, int current) {
-        if (!primeNum.equals("")) {
-            if (!prime[Integer.valueOf(primeNum)])
-                intHasset.add(Integer.valueOf(primeNum));
-        }
         if (current == num.length()) {
-            if (index == num.length()-1)
-                return;
-            else {
+            if (primeNum.length() > 0 && !prime[Integer.valueOf(primeNum)])
+                intHasset.add(Integer.valueOf(primeNum));
+            else if (index < num.length()) {
                 index++;
-                DFS(num, String.valueOf(num.charAt(index)), 0);
+                if (index == num.length())
+                    return;
+                else
+                    DFS(num, String.valueOf(num.charAt(index)), 0);
             }
         } else {
-            DFS(num, primeNum, current + 1);
-            DFS(num, primeNum + num.charAt(current), current + 1);
-
+            if (index > 0 && index == current)
+                DFS(num, primeNum, current + 1);
+            else {
+                DFS(num, primeNum + num.charAt(current), current + 1);
+                DFS(num, primeNum, current + 1);
+            }
         }
     }
 
     public void getPrime(boolean[] prime) {
         prime[0] = true;
         prime[1] = true;
-        for (int i = 2; i <= Math.sqrt(100000000); i++) {
-            for (int j = i; j <= 100000000 / i; j++)
+        for (int i = 2; i <= Math.sqrt(10000000); i++) {
+            for (int j = i; j <= 10000000 / i; j++)
                 prime[i * j] = true;
         }
     }
@@ -39,6 +41,8 @@ class Solution {
         getPrime(prime);
 
         DFS(numbers, "", 0);
+
+        System.out.println(intHasset.toString());
 
         return intHasset.size();
     }
