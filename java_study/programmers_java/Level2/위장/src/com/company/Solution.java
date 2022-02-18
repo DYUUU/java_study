@@ -9,10 +9,6 @@ public class Solution {
 
     public void DFS(LinkedHashMap<String, String> spyClothes, HashMap<String, String> output, int current, boolean flag) {
         if (current <= spyClothes.size()) {
-            if(current==0)
-            {
-                DFS(current)
-            }
             if (flag) {
                 int cnt = 0;
                 for (String clothes : spyClothes.keySet()) {
@@ -22,7 +18,6 @@ public class Solution {
                             count++;
                             System.out.println(output);
                         }
-                        output.put(spyClothes.get(clothes), "");
                     } else {
                         cnt++;
                     }
@@ -49,6 +44,7 @@ public class Solution {
         }
 
         DFS(spyClothes, output, 0, false);
+        DFS(spyClothes, output, 0, true);
 
         System.out.println(count);
 
