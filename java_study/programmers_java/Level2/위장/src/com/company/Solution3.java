@@ -3,24 +3,7 @@ package com.company;
 import java.util.HashMap;
 
 public class Solution3 {
-    public int index = 1;
-    public int count = 0;
 
-    public void findComb(int[][] src, String output, int x, int y) {
-        if (x == 30) {
-            if (!output.equals("")) {
-                count++;
-            }
-        }
-        else {
-            if (y == 30 || src[x][y] == 0) {
-                findComb(src, output, x + 1, 0);
-            } else {
-                findComb(src, output, x, y + 1);
-                findComb(src, output + src[x][y], x + 1, 0);
-            }
-        }
-    }
 
     public int solution(String[][] clothes) {
         int[][] combination = new int[30][30];
@@ -34,18 +17,11 @@ public class Solution3 {
                 hashMap.put(clothes[i][1], 1);
         }
 
+        int answer =1;
         for (int i : hashMap.values()) {
-            for (int j = 0; j < i; j++) {
-                combination[combX][j] = index;
-                index++;
-            }
-            combX++;
+            answer *=i+1;
         }
+        return answer-1;
 
-        findComb(combination, "", 0, 0);
-
-        System.out.println(count);
-
-        return count;
     }
 }

@@ -23,8 +23,8 @@ public class Solution {
                     }
                 }
 
-                for (String key : spyClothes.keySet()) {
-                    output.put(spyClothes.get(key), "");
+                for (String clothes : spyClothes.values()) {
+                    output.put(clothes, "");
                 }
             }
             // flag가 false일 경우 current를 1 증가시켜 다시 탐색
@@ -41,20 +41,21 @@ public class Solution {
         int answer = 0;
         LinkedHashMap<String, String> spyClothes = new LinkedHashMap<>();
 
-        // spyClothes 해쉬맵에 추가 (옷, 종류_
+        // spyClothes 해쉬맵에 추가 (옷, 옷 종류)
         for (int i = 0; i < clothes.length; i++) {
             spyClothes.put(clothes[i][0], clothes[i][1]);
         }
 
         // output 해쉬맵에 추가 (옷 종류, 옷)
-        for (String key : spyClothes.keySet()) {
-            output.put(spyClothes.get(key), "");
+        for (String tmpClothes : spyClothes.values()) {
+            output.put(tmpClothes, "");
         }
 
         DFS(spyClothes, output, 0, true);
         DFS(spyClothes, output, 0, false);
 
-        System.out.println(hashSet.toString());
+        System.out.println(hashSet);
+        System.out.println(hashSet.size());
 
         return hashSet.size();
     }
