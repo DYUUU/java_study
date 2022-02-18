@@ -1,30 +1,36 @@
 package com.company;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 
 public class Solution {
     public int count = 0;
     public HashMap<String, String> output = new HashMap<>();
+    public HashSet<String> hashSet = new HashSet<>();
 
     public void DFS(LinkedHashMap<String, String> spyClothes, HashMap<String, String> output, int current, boolean flag) {
         if (current <= spyClothes.size()) {
+            // flag가 true 일 경우 map 에 추가
             if (flag) {
                 int cnt = 0;
                 for (String clothes : spyClothes.keySet()) {
                     if (cnt == current) {
-                        if (!output.containsValue(clothes)) {
-                            output.put(spyClothes.get(clothes), clothes);
-                            count++;
-                            System.out.println(output);
-                        }
+                        output.put(spyClothes.get(clothes), clothes);
+                        hashSet.add(output.toString());
                     } else {
                         cnt++;
                     }
                 }
-            } else {
-                DFS(spyClothes, output, current + 1, false);
+
+                for (String key : spyClothes.keySet()) {
+                    output.put(spyClothes.get(key), "");
+                }
+            }
+            // flag가 false일 경우 current를 1 증가시켜 다시 탐색
+            else {
                 DFS(spyClothes, output, current + 1, true);
+                DFS(spyClothes, output, current + 1, false);
             }
 
         }
@@ -35,19 +41,21 @@ public class Solution {
         int answer = 0;
         LinkedHashMap<String, String> spyClothes = new LinkedHashMap<>();
 
+        // spyClothes 해쉬맵에 추가 (옷, 종류_
         for (int i = 0; i < clothes.length; i++) {
             spyClothes.put(clothes[i][0], clothes[i][1]);
         }
 
+        // output 해쉬맵에 추가 (옷 종류, 옷)
         for (String key : spyClothes.keySet()) {
             output.put(spyClothes.get(key), "");
         }
 
-        DFS(spyClothes, output, 0, false);
         DFS(spyClothes, output, 0, true);
+        DFS(spyClothes, output, 0, false);
 
-        System.out.println(count);
+        System.out.println(hashSet.toString());
 
-        return count;
+        return hashSet.size();
     }
 }
