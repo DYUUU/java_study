@@ -2,14 +2,13 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class Solution3 {
     public ArrayList<String> arr = new ArrayList<>();
     public int index = 1;
 
     public void findComb(int[][] src, String output, int x, int y) {
-        if (x == 4) {
+        if (x == 30) {
             if (!output.equals("")) {
                 arr.add(output);
             }
@@ -17,20 +16,21 @@ public class Solution3 {
             if (y == 30) {
                 findComb(src, output, x + 1, 0);
             } else {
-                if (src[x][y] != 0)
+                if (src[x][y] != 0) {
+                    findComb(src, output, x, y + 1);
                     findComb(src, output + src[x][y], x + 1, 0);
-                findComb(src, output, x, y + 1);
+                } else {
+                    findComb(src, output, x + 1, 0);
+                }
             }
         }
     }
 
 
     public int solution(String[][] clothes) {
-        int[][] combination = new int[4][30];
+        int[][] combination = new int[30][30];
         HashMap<String, Integer> hashMap = new HashMap<>();
         int combX = 0;
-        int x = clothes.length;
-        int y = clothes[0].length;
 
         for (int i = 0; i < clothes.length; i++) {
             if (hashMap.containsKey(clothes[i][1]))
