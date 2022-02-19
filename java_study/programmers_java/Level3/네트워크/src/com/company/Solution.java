@@ -1,39 +1,50 @@
 package com.company;
 
-import java.util.Iterator;
-import java.util.LinkedHashSet;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Solution {
-    public int solution(int n, int[][] computers) {
-        LinkedHashSet<String> hashSet = new LinkedHashSet<>();
+    public ArrayList<String> arr;
+    HashSet<Integer> visit = new HashSet<>();
+    HashSet<Integer> network = new HashSet<>();
 
-
-        for (int i = 0; i < n; i++) {
-            String str = "";
-            for (int j = 0; j < n; j++) {
-                str += computers[i][j];
-            }
-            hashSet.add(str);
-        }
-
-        for (int i = 0; i < n; i++) {
-            for (String key : hashSet) {
-                String tmp = key;
-                String reverseTmp = "";
-                char[] ch = tmp.toCharArray();
-                for (int j = ch.length - 1; j >= 0; j--) {
-                    reverseTmp += ch[j];
+    public void DFS(int n, int index, int current) {
+        if (current == n) {
+            return;
+        } else {
+            for (int j = 0; j < arr.get(current).length(); j++) {
+                int tmpNum = Integer.parseInt(String.valueOf(arr.get(current).charAt(j)))+1;
+                if (!visit.contains(tmpNum)) {
+                    visit.add(tmpNum);
+                    if (j==0) {
+                        index = Integer.parseInt(String.valueOf(arr.get(current).charAt(0)));
+                        network.add(index);
+                    }
                 }
-                if (hashSet.contains(reverseTmp)&&!tmp.equals(reverseTmp)) {
-                    hashSet.remove(tmp);
-                    hashSet.remove(reverseTmp);
-                    break;
+                if (j == arr.get(current).length() - 1) {
+                    DFS(n, index, current + 1);
                 }
             }
         }
-
-        System.out.println(hashSet);
-
-        return hashSet.size();
     }
+
+    public int solution(int n, int[][] computers) {
+        arr = new ArrayList<>();
+        String str = "";
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (computers[i][j] == 1)
+                    str += j + 1;
+            }
+            arr.add(String.valueOf(str));
+            str = "";
+        }
+        DFS(n, 1, 0);
+
+        System.out.println(network);
+        return network.size();
+    }
+
 }
