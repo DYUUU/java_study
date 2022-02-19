@@ -2,34 +2,36 @@ package com.company;
 
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
+import java.util.SortedMap;
 
 public class Solution {
     public ArrayList<String> arr;
-    HashSet<Integer> visit = new HashSet<>();
-    HashSet<Integer> network = new HashSet<>();
+    public boolean[] visit;
+    public ArrayList<Integer> network = new ArrayList<>();
 
-    public void DFS(int n, int index, int current) {
+    public void DFS(int n, int current) {
         if (current == n) {
             return;
         } else {
             for (int j = 0; j < arr.get(current).length(); j++) {
-                int tmpNum = Integer.parseInt(String.valueOf(arr.get(current).charAt(j)))+1;
-                if (!visit.contains(tmpNum)) {
-                    visit.add(tmpNum);
+                int tmpNum = Integer.parseInt(String.valueOf(arr.get(current).charAt(j)));
+                if (!visit[tmpNum]) {
+                    visit[tmpNum]=true;
                     if (j==0) {
-                        index = Integer.parseInt(String.valueOf(arr.get(current).charAt(0)));
-                        network.add(index);
+                        network.add(tmpNum);
                     }
                 }
                 if (j == arr.get(current).length() - 1) {
-                    DFS(n, index, current + 1);
+                    DFS(n, current + 1);
                 }
             }
         }
     }
 
     public int solution(int n, int[][] computers) {
+        visit  = new boolean[201];
+        visit[0]=true;
         arr = new ArrayList<>();
         String str = "";
 
@@ -41,7 +43,7 @@ public class Solution {
             arr.add(String.valueOf(str));
             str = "";
         }
-        DFS(n, 1, 0);
+        DFS(n, 0);
 
         System.out.println(network);
         return network.size();
