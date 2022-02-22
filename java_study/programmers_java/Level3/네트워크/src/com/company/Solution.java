@@ -1,41 +1,41 @@
 package com.company;
 
-import java.util.ArrayList;
+
 import java.util.HashSet;
 
 public class Solution {
     public HashSet<Integer> visit;
     public HashSet<Integer> network = new HashSet<>();
 
-    public void findNetwork(int current, ArrayList<String> arr) {
-        for (int i = 0; i < arr.get(current).length(); i++) {
-            int tmp = Integer.parseInt(String.valueOf(arr.get(current).charAt(i)));
+    public void findNetwork(int current,String[] arr) {
+        for (int i = 0; i < arr[current].length(); i++) {
+            int tmp = Integer.parseInt(String.valueOf(arr[current].charAt(i)));
             if (!visit.contains(tmp)) {
                 visit.add(tmp);
-                findNetwork(tmp-1, arr);
+                findNetwork(tmp, arr);
             }
         }
     }
 
     public int solution(int n, int[][] computers) {
         visit = new HashSet<>();
-        ArrayList<String> arr = new ArrayList<>();
+        String[] arr = new String[n];
         String str = "";
 
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (computers[i][j] == 1)
-                    str += j + 1;
+                    str += j;
             }
-            arr.add(str);
+            arr[i]=(str);
             str = "";
         }
 
         for (int i = 0; i < n; i++) {
-            if (!visit.contains(i + 1)) {
+            if (!visit.contains(i)) {
                 findNetwork(i, arr);
-                network.add(i + 1);
+                network.add(i);
             }
         }
 
