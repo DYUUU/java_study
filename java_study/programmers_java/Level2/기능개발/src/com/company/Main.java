@@ -20,7 +20,7 @@ public class Main {
 
 
         Solution sol = new Solution();
-        sol.solution(progresses,speed);
-//        sol.solution(progresses2,speed2);
+//        sol.solution(progresses,speed);
+        sol.solution(progresses2,speed2);
     }
 }

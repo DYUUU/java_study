@@ -12,12 +12,14 @@ public class Solution {
         Queue<Integer> progressQueue = new LinkedList<>();
         int len = progresses.length - 1;
         int num = 0;
+        int index = 0;
+
         for (int i = 0; i <= len; i++) {
             progressQueue.add(progresses[i]);
         }
 
-        while (true) {
-            for (int i = num; i < progressQueue.size(); i++) {
+        while (progressQueue.size() != 0) {
+            for (int i = index; i < progresses.length; i++) {
                 progressQueue.add(progressQueue.peek() + speeds[i]);
                 progressQueue.remove();
             }
@@ -29,10 +31,9 @@ public class Solution {
 
             if (num != 0) {
                 answer.add(num);
+                index += num;
                 num = 0;
             }
-            if (progressQueue.size() == 0)
-                break;
         }
 
         System.out.println(answer);
