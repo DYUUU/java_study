@@ -23,7 +23,6 @@ public class Solution {
 
         }
 
-        System.out.println(Arrays.toString(answer));
 
         return answer;
     }

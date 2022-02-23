@@ -9,5 +9,6 @@ public class Main {
         };
         Solution sol = new Solution();
         sol.solution(prices);
+
     }
 }
