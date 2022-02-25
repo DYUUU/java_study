@@ -14,11 +14,20 @@ public class Main {
                 {"ICN", "ATL"},
                 {"SFO", "ATL"},
                 {"ATL", "ICN"},
-                {"ATL", "SFO"}
+                {"ATL", "SFO"},
+        };
+
+        String[][] tickets3=  {
+                {"ICN", "A"},
+                {"ICN", "A"},
+                {"ICN", "A"},
+                {"A", "ICN"},
+                {"A", "ICN"},
         };
 
         Solution sol = new Solution();
 //        sol.solution(tickets1);
-        sol.solution(tickets2);
+//        sol.solution(tickets2);
+         sol.solution(tickets3);
     }
 }
