@@ -12,46 +12,44 @@ public class Solution {
                 answer = dst;
             }
         } else {
-                // 상
-                if (x - 1 >= 0) {
-                    if (maps[x - 1][y] == 1 || maps[x - 1][y] > count) {
-                        maps[--x][y] = ++count;
-                        changeCoordinate(maps, x++, y, count--);
-                    }
+            // 상
+            if (x - 1 >= 0) {
+                if (maps[x - 1][y] == 1 || maps[x - 1][y] > count) {
+                    maps[--x][y] = ++count;
+                    changeCoordinate(maps, x++, y, count--);
                 }
-                // 하
-                if (x + 1 <= maps.length - 1) {
-                    if (maps[x + 1][y] == 1 || maps[x + 1][y] > count) {
-                        maps[++x][y] = ++count;
-                        changeCoordinate(maps, x--, y, count--);
-                    }
+            }
+            // 하
+            if (x + 1 <= maps.length - 1) {
+                if (maps[x + 1][y] == 1 || maps[x + 1][y] > count) {
+                    maps[++x][y] = ++count;
+                    changeCoordinate(maps, x--, y, count--);
                 }
-                // 좌
-                if (y - 1 >= 0) {
-                    if (maps[x][y - 1] == 1 || maps[x][y - 1] > count) {
-                        maps[x][--y] = ++count;
-                        changeCoordinate(maps, x, y++, count--);
-                    }
+            }
+            // 좌
+            if (y - 1 >= 0) {
+                if (maps[x][y - 1] == 1 || maps[x][y - 1] > count) {
+                    maps[x][--y] = ++count;
+                    changeCoordinate(maps, x, y++, count--);
                 }
-                // 우
-                if (y + 1 <= maps[0].length - 1) {
-                    if (maps[x][y + 1] == 1 || maps[x][y + 1] > count) {
-                        maps[x][++y] = ++count;
-                        changeCoordinate(maps, x, y--, count--);
-                    }
+            }
+            // 우
+            if (y + 1 <= maps[0].length - 1) {
+                if (maps[x][y + 1] == 1 || maps[x][y + 1] > count) {
+                    maps[x][++y] = ++count;
+                    changeCoordinate(maps, x, y--, count--);
                 }
             }
         }
+    }
 
 
     public int solution(int[][] maps) {
-
-        if (maps[maps.length - 1][maps[0].length - 2] == 0 && maps[maps.length - 2][maps[0].length - 1] == 0) {
+        changeCoordinate(maps, 0, 0, 1);
+        if (maps[maps.length - 1][maps[0].length - 1] == 1) {
             return -1;
-        } else {
-            changeCoordinate(maps, 0, 0, 1);
+        } else
             System.out.println(answer);
-            return answer;
-        }
+        return answer;
     }
 }
