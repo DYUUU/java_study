@@ -1,7 +1,3 @@
-package com.company;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Solution {
     public int route = 0;
@@ -15,7 +11,8 @@ public class Solution {
         }
         // 목적지에 도착헀다면 stop
         if (dst > 1) {
-            answer = count;
+            if(answer<=0||dst<answer)
+                answer = count;
         }
         {
             // 상
