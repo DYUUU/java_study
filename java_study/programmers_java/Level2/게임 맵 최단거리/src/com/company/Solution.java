@@ -36,9 +36,10 @@ public class Solution {
                 check++;
             }
         }
+        count -= 1;
         if (--check >= 1) {
             for (int i = 0; i < check; i++) {
-                coordinates.add(new int[]{x, y, count-1});
+                coordinates.add(new int[]{x, y, count});
             }
         }
     }
@@ -57,44 +58,40 @@ public class Solution {
         maps[0][0] = 0;
         coordinates.add(new int[]{0, 0, count});
 
-        while (coordinates.size() > 0) {
-            for (int i = 0; i < coordinates.size(); i++) {
-                int[] coordinate = coordinates.get(i);
+        while (coordinates.size()>0) {
+                int[] coordinate = coordinates.remove(0);
                 int x = coordinate[0];
                 int y = coordinate[1];
-                int tmpCount = coordinate[2] + 1;
+                int tmpCount = coordinate[2]+1;
 
                 // 사방면 체크
                 checkOpenedPlace(x, y, tmpCount, maps, move);
-                if (!move.containsValue(1)) {
-                    coordinates.remove(i);
-                    break;
-                }
-                //시간 초과
-                for (String key : move.keySet()) {
-                    if (move.get(key) == 1) {
-                        if (key.equals("up")) {
-                            maps[--x][y] = tmpCount;
-                        }
-                        // 하
-                        if (key.equals("down")) {
-                            maps[++x][y] = tmpCount;
-                        }
-                        // 좌
-                        if (key.equals("left")) {
-                            maps[x][--y] = tmpCount;
-                        }
-                        // 우
-                        if (key.equals("right")) {
-                            maps[x][++y] = tmpCount;
-                        }
-                        coordinates.set(i, new int[]{x, y, tmpCount});
-                        move.put(key, 0);
+                // 상
 
-                        break;
-                    }
+
+                if (move.get("up") == 1) {
+                    maps[x-1][y] = tmpCount;
+                    coordinates.add( new int[]{x-1, y, tmpCount});
+                    move.put("up", 0);
                 }
-            }
+                // 하
+                if (move.get("down") == 1) {
+                    maps[x+1][y] = tmpCount;
+                    coordinates.add(new int[]{x+1, y, tmpCount});
+                    move.put("down", 0);
+                }
+                // 좌
+                if (move.get("left") == 1) {
+                    maps[x][y-1] = tmpCount;
+                    coordinates.add( new int[]{x, y-1, tmpCount});
+                    move.put("left", 0);
+                }
+                // 우
+                if (move.get("right") == 1) {
+                    maps[x][y+1] = tmpCount;
+                    coordinates.add(new int[]{x, y+1, tmpCount});
+                    move.put("right", 0);
+                }
         }
 
         System.out.println(maps[x_max][y_max]);
