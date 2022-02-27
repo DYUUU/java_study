@@ -59,7 +59,7 @@ public class Solution {
         maps[0][0] = 0;
         coordinates.add(new int[]{0, 0, count});
 
-        while (coordinates.size()>0) {
+        while (coordinates.size() > 0) {
             for (int i = 0; i < coordinates.size(); i++) {
                 int[] coordinate = coordinates.get(i);
                 int x = coordinate[0];
@@ -72,35 +72,32 @@ public class Solution {
                     coordinates.remove(i);
                     break;
                 }
-                // 상
 
-                if (move.get("up") == 1) {
-                    maps[--x][y] = ++tmpCount;
+
+                //시간 초과
+                for (String key : move.keySet()) {
+                    // 상
+                    if (move.get(key) == 1) {
+                        if (key.equals("up")) {
+                            maps[--x][y] = ++tmpCount;
+                        }
+                        // 하
+                        if (key.equals("down")) {
+                            maps[++x][y] = ++tmpCount;
+                        }
+                        // 좌
+                        if (key.equals("left")) {
+                            maps[x][--y] = ++tmpCount;
+                        }
+                        // 우
+                        if (key.equals("right")) {
+                            maps[x][++y] = ++tmpCount;
+                        }
                     coordinates.set(i, new int[]{x, y, tmpCount});
-                    move.put("up", 0);
-                    continue;
+                    move.put(key, 0);
+                    }
                 }
-                // 하
-                if (move.get("down") == 1) {
-                    maps[++x][y] = ++tmpCount;
-                    coordinates.set(i, new int[]{x, y, tmpCount});
-                    move.put("down", 0);
-                    continue;
-                }
-                // 좌
-                if (move.get("left") == 1) {
-                    maps[x][--y] = ++tmpCount;
-                    coordinates.set(i, new int[]{x, y, tmpCount});
-                    move.put("left", 0);
-                    continue;
-                }
-                // 우
-                if (move.get("right") == 1) {
-                    maps[x][++y] = ++tmpCount;
-                    coordinates.set(i, new int[]{x, y, tmpCount});
-                    move.put("right", 0);
-                    continue;
-                }
+
             }
         }
 
