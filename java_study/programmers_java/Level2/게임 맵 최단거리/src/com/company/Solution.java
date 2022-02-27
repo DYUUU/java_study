@@ -49,7 +49,6 @@ public class Solution {
         int x_max = maps.length - 1;
         int y_max = maps[0].length - 1;
         int count = 1;
-        int answer = 0;
         HashMap<String, Integer> move = new HashMap<>();
 
         move.put("up", 0);
@@ -60,56 +59,55 @@ public class Solution {
         maps[0][0] = 0;
         coordinates.add(new int[]{0, 0, count});
 
-        if (maps[x_max - 1][y_max] == 0 && maps[x_max][y_max - 1] == 0) {
-            return -1;
-        } else {
-            while (maps[x_max][y_max] == 1) {
-                for (int i = 0; i < coordinates.size(); i++) {
-                    int[] coordinate = coordinates.get(i);
-                    int x = coordinate[0];
-                    int y = coordinate[1];
-                    int tmpCount = coordinate[2];
+        while (coordinates.size()>0) {
+            for (int i = 0; i < coordinates.size(); i++) {
+                int[] coordinate = coordinates.get(i);
+                int x = coordinate[0];
+                int y = coordinate[1];
+                int tmpCount = coordinate[2];
 
-                    // 사방면 체크
-                        checkOpenedPlace(x, y, tmpCount, maps, move);
-                        if (!move.containsValue(1))
-                            coordinates.remove(i);
-                    // 상
+                // 사방면 체크
+                checkOpenedPlace(x, y, tmpCount, maps, move);
+                if (!move.containsValue(1)) {
+                    coordinates.remove(i);
+                    break;
+                }
+                // 상
 
-                    if (move.get("up") == 1) {
-                        maps[--x][y] = ++tmpCount;
-                        coordinates.set(i, new int[]{x, y, tmpCount});
-                        move.put("up", 0);
-                        continue;
-                    }
-                    // 하
-                    if (move.get("down") == 1) {
-                        maps[++x][y] = ++tmpCount;
-                        coordinates.set(i, new int[]{x, y, tmpCount});
-                        move.put("down", 0);
-                        continue;
-                    }
-                    // 좌
-                    if (move.get("left") == 1) {
-                        maps[x][--y] = ++tmpCount;
-                        coordinates.set(i, new int[]{x, y, tmpCount});
-                        move.put("left", 0);
-                        continue;
-                    }
-                    // 우
-                    if (move.get("right") == 1) {
-                        maps[x][++y] = ++tmpCount;
-                        coordinates.set(i, new int[]{x, y, tmpCount});
-                        move.put("right", 0);
-                        continue;
-                    }
+                if (move.get("up") == 1) {
+                    maps[--x][y] = ++tmpCount;
+                    coordinates.set(i, new int[]{x, y, tmpCount});
+                    move.put("up", 0);
+                    continue;
+                }
+                // 하
+                if (move.get("down") == 1) {
+                    maps[++x][y] = ++tmpCount;
+                    coordinates.set(i, new int[]{x, y, tmpCount});
+                    move.put("down", 0);
+                    continue;
+                }
+                // 좌
+                if (move.get("left") == 1) {
+                    maps[x][--y] = ++tmpCount;
+                    coordinates.set(i, new int[]{x, y, tmpCount});
+                    move.put("left", 0);
+                    continue;
+                }
+                // 우
+                if (move.get("right") == 1) {
+                    maps[x][++y] = ++tmpCount;
+                    coordinates.set(i, new int[]{x, y, tmpCount});
+                    move.put("right", 0);
+                    continue;
                 }
             }
         }
 
-        answer = maps[x_max][y_max];
-        System.out.println(answer);
-
-        return answer;
+        System.out.println(maps[x_max][y_max]);
+        if (maps[x_max][y_max] == 1)
+            return -1;
+        else
+            return maps[x_max][y_max];
     }
 }
