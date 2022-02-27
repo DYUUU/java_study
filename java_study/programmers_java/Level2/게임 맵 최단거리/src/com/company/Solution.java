@@ -9,7 +9,7 @@ public class Solution {
 
     public void checkOpenedPlace(int x, int y, int count, int[][] maps, HashMap<String, Integer> move) {
         int check = 0;
-        count+=1;
+        count += 1;
         // 상
         if (x - 1 >= 0) {
             if (maps[x - 1][y] == 1 || maps[x - 1][y] > count) {
@@ -20,7 +20,7 @@ public class Solution {
         // 하
         if (x + 1 <= maps.length - 1) {
             if (maps[x + 1][y] == 1 || maps[x + 1][y] > count) {
-                 move.put("down", 1);
+                move.put("down", 1);
                 check++;
             }
         }
@@ -37,7 +37,7 @@ public class Solution {
                 check++;
             }
         }
-        count-=1;
+        count -= 1;
         if (--check >= 1) {
             for (int i = 0; i < check; i++) {
                 coordinates.add(new int[]{x, y, count});
@@ -71,13 +71,9 @@ public class Solution {
                     int tmpCount = coordinate[2];
 
                     // 사방면 체크
-                    if (!move.containsValue(1)) {
                         checkOpenedPlace(x, y, tmpCount, maps, move);
-                    }
-                    if (!move.containsValue(1))
-                    {
-                        coordinates.remove(i);
-                    }
+                        if (!move.containsValue(1))
+                            coordinates.remove(i);
                     // 상
 
                     if (move.get("up") == 1) {
