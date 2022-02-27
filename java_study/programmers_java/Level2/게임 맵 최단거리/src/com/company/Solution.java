@@ -9,7 +9,6 @@ public class Solution {
 
     public void checkOpenedPlace(int x, int y, int count, int[][] maps, HashMap<String, Integer> move) {
         int check = 0;
-        count += 1;
         // 상
         if (x - 1 >= 0) {
             if (maps[x - 1][y] == 1 || maps[x - 1][y] > count) {
@@ -37,10 +36,9 @@ public class Solution {
                 check++;
             }
         }
-        count -= 1;
         if (--check >= 1) {
             for (int i = 0; i < check; i++) {
-                coordinates.add(new int[]{x, y, count});
+                coordinates.add(new int[]{x, y, count-1});
             }
         }
     }
@@ -64,7 +62,7 @@ public class Solution {
                 int[] coordinate = coordinates.get(i);
                 int x = coordinate[0];
                 int y = coordinate[1];
-                int tmpCount = coordinate[2];
+                int tmpCount = coordinate[2] + 1;
 
                 // 사방면 체크
                 checkOpenedPlace(x, y, tmpCount, maps, move);
@@ -72,32 +70,30 @@ public class Solution {
                     coordinates.remove(i);
                     break;
                 }
-
-
                 //시간 초과
                 for (String key : move.keySet()) {
-                    // 상
                     if (move.get(key) == 1) {
                         if (key.equals("up")) {
-                            maps[--x][y] = ++tmpCount;
+                            maps[--x][y] = tmpCount;
                         }
                         // 하
                         if (key.equals("down")) {
-                            maps[++x][y] = ++tmpCount;
+                            maps[++x][y] = tmpCount;
                         }
                         // 좌
                         if (key.equals("left")) {
-                            maps[x][--y] = ++tmpCount;
+                            maps[x][--y] = tmpCount;
                         }
                         // 우
                         if (key.equals("right")) {
-                            maps[x][++y] = ++tmpCount;
+                            maps[x][++y] = tmpCount;
                         }
-                    coordinates.set(i, new int[]{x, y, tmpCount});
-                    move.put(key, 0);
+                        coordinates.set(i, new int[]{x, y, tmpCount});
+                        move.put(key, 0);
+
+                        break;
                     }
                 }
-
             }
         }
 
