@@ -61,13 +61,12 @@ public class Solution {
                     }
                 }
             }
-            System.out.println(values.get(number));
             if(10*number>Integer.valueOf(strN+N))strN += N;
-            if (values.containsKey(number)) {
-                if (values.get(number).length() - values.get(number).replaceAll(String.valueOf(N), "").length() <= 8) {
-                    break;
-                }
-            }
+//            if (values.containsKey(number)) {
+//                if (values.get(number).length() - values.get(number).replaceAll(String.valueOf(N), "").length() <= 8) {
+//                    break;
+//                }
+//            }
         }
 
         for (char ch : values.get(number).toCharArray()) {
@@ -75,7 +74,6 @@ public class Solution {
                 answer++;
         }
 
-        System.out.println(values.get(number));
 
         if (answer < 9)
             return answer;
