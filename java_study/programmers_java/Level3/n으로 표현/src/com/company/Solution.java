@@ -1,83 +1,51 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.TreeMap;
 
 public class Solution {
 
     public int solution(int N, int number) {
-        TreeMap<Integer, String> values = new TreeMap<>();
-        int answer = 0;
+        ArrayList<HashMap<Integer, String>> result = new ArrayList<>();
         String strN = Integer.toString(N);
+        int answer = 0;
 
-        values.put(Integer.valueOf(strN), strN);
-
-        while (!values.containsKey(number)) {
-            values.put(Integer.valueOf(strN), strN);
-            TreeMap<Integer, String> tmpMap = (TreeMap<Integer, String>) values.clone();
-
-            for (int i : tmpMap.keySet()) {
-                for (int j : tmpMap.keySet()) {
-                    String str = values.get(i) + " ? " + values.get(j);
-                    // 더하기
-                    if (i + j <= number) {
-                        if (!tmpMap.containsKey(i + j)) {
-                            values.put(i + j, "("+values.get(i) + " + " + values.get(j)+")");
-                        } else {
-                            if (str.length() < tmpMap.get(i + j).length()) {
-                                values.put(i + j, "("+values.get(i) + " + " + values.get(j)+")");
-                            }
-                        }
-                    }
-                    // 빼기
-                    if (i - j <= number && 0 < i - j) {
-                        if (!tmpMap.containsKey(i - j)) {
-                            values.put(i - j, "("+values.get(i) + " - " + values.get(j)+")");
-                        } else {
-                            if (str.length() < tmpMap.get(i - j).length()) {
-                                values.put(i - j, "("+values.get(i) + " - " + values.get(j)+")");
-                            }
-                        }
-                    }
-                    // 곱하기
-                    if (i * j <=number) {
-                        if (!tmpMap.containsKey(i * j)) {
-                            values.put(i * j,"("+ values.get(i) + " * " + values.get(j)+")");
-                        } else {
-                            if (str.length() < tmpMap.get(i * j).length()) {
-                                values.put(i * j, "("+values.get(i) + " * " + values.get(j)+")");
-                            }
-                        }
-                    }
-                    // 나누기
-                    if (i / j <= N * number && i / j > 0) {
-                        if (!tmpMap.containsKey(i / j)) {
-                            values.put(i / j, "("+values.get(i) + " / " + values.get(j)+")");
-                        } else {
-                            if (str.length() < tmpMap.get(i / j).length()) {
-                                values.put(i / j, "("+values.get(i) + " / " + values.get(j)+")");
-                            }
+        result.add(new HashMap<Integer, String>());
+        result.add(new HashMap<Integer, String>());
+        result.get(1).put(Integer.valueOf(strN), strN);
+        for (int i = 2; i <= 8; i++) {
+            result.add(new HashMap<Integer, String>());
+            strN += N;
+            result.get(i).put(Integer.valueOf(strN), strN);
+            for (int j = 1; j <= (result.size() - 1) / 2;j++) {
+                    for (int k = result.size() - 2; k >= (result.size()/ 2); k--,j++) {
+                for (int key2: result.get(j).keySet()) {
+                        for (int key : result.get(k).keySet()) {
+                            // 더하기
+                            if (key + key2 > 0)
+                                result.get(i).put(key + key2, "(" + result.get(j).get(key) + "+" + result.get(k).get(key2) + ")");
+                            // 빼기
+                            if (key - key2 > 0)
+                                result.get(i).put(key - key2, "(" + result.get(j).get(key) + "-" + result.get(k).get(key2) + ")");
+                            // 곱하기
+                            if (key * key2 > 0)
+                                result.get(i).put(key * key2, "(" + result.get(j).get(key) + "*" + result.get(k).get(key2) + ")");
+                            // 나누기
+                            if (key / key2 > 0)
+                                result.get(i).put(key / key2, "(" + result.get(j).get(key) + "/" + result.get(k).get(key2) + ")");
                         }
                     }
                 }
             }
-            if(10*number>Integer.valueOf(strN+N))strN += N;
-//            if (values.containsKey(number)) {
-//                if (values.get(number).length() - values.get(number).replaceAll(String.valueOf(N), "").length() <= 8) {
-//                    break;
-//                }
-//            }
+                if (result.get(i).containsKey(number)) {
+                    answer = i;
+                    break;
+                }
         }
 
-        for (char ch : values.get(number).toCharArray()) {
-            if ((int) ch - '0' == N)
-                answer++;
-        }
-
-
-        if (answer < 9)
+        if (answer<=8&&answer>=1) {
             return answer;
-        else
+        } else
             return -1;
 
     }
