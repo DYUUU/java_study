@@ -6,12 +6,12 @@ public class Main {
 	// write your code here
         int n = 5;
         int number = 12;
-        int n2 = 5;
-        int number2 =31168;
+        int n2 = 1;
+        int number2 =1;
 
         Solution sol = new Solution();
-//        sol.solution(n,number);
-        sol.solution(n2,number2);
+        System.out.println(sol.solution(n,number));
+//        System.out.println(sol.solution(n2,number2));
 
     }
 }
