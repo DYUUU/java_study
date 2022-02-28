@@ -6,8 +6,8 @@ public class Main {
 	// write your code here
         int n = 5;
         int number = 12;
-        int n2 = 2;
-        int number2 =11;
+        int n2 = 5;
+        int number2 =2;
 
         Solution sol = new Solution();
         sol.solution(n,number);

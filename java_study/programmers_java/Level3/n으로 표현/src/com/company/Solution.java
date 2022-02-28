@@ -60,7 +60,7 @@ public class Solution {
                     }
                 }
             }
-            if (N * number >= Integer.valueOf(strN + N)) strN += N;
+            if (number* number >= Integer.valueOf(strN + N)) strN += N;
         }
 
         for (char ch : values.get(number).toCharArray()) {
