@@ -11,7 +11,7 @@ public class Solution {
 
         values.put(Integer.valueOf(strN), strN);
 
-        while (!values.containsKey(number)&&values.values().size()<number*number) {
+        while (true) {
             values.put(Integer.valueOf(strN), strN);
             HashMap<Integer, String> tmpMap = (HashMap<Integer, String>) values.clone();
 
@@ -19,50 +19,57 @@ public class Solution {
                 for (int j : tmpMap.keySet()) {
                     String str = values.get(i) + " ? " + values.get(j);
                     // 더하기
-                    if (i + j <= N * number) {
+                    if (i + j <= number) {
                         if (!tmpMap.containsKey(i + j)) {
-                            values.put(i + j, values.get(i) + " + " + values.get(j));
+                            values.put(i + j, "("+values.get(i) + " + " + values.get(j)+")");
                         } else {
                             if (str.length() < tmpMap.get(i + j).length()) {
-                                values.put(i + j, values.get(i) + " + " + values.get(j));
+                                values.put(i + j, "("+values.get(i) + " + " + values.get(j)+")");
                             }
                         }
                     }
                     // 빼기
-                    if (i - j <= N * number && 0 < i - j) {
+                    if (i - j <= number && 0 < i - j) {
                         if (!tmpMap.containsKey(i - j)) {
-                            values.put(i - j, values.get(i) + " - " + values.get(j));
+                            values.put(i - j, "("+values.get(i) + " - " + values.get(j)+")");
                         } else {
                             if (str.length() < tmpMap.get(i - j).length()) {
-                                values.put(i - j, values.get(i) + " - " + values.get(j));
+                                values.put(i - j, "("+values.get(i) + " - " + values.get(j)+")");
                             }
                         }
                     }
                     // 곱하기
-                    if (i * j <= N * number) {
+                    if (i * j <=number) {
                         if (!tmpMap.containsKey(i * j)) {
-                            values.put(i * j, values.get(i) + " * " + values.get(j));
+                            values.put(i * j,"("+ values.get(i) + " * " + values.get(j)+")");
                         } else {
                             if (str.length() < tmpMap.get(i * j).length()) {
-                                values.put(i * j, values.get(i) + " * " + values.get(j));
+                                values.put(i * j, "("+values.get(i) + " * " + values.get(j)+")");
                             }
                         }
                     }
                     // 나누기
                     if (i / j <= N * number && i / j > 0) {
                         if (!tmpMap.containsKey(i / j)) {
-                            values.put(i / j, values.get(i) + " / " + values.get(j));
+                            values.put(i / j, "("+values.get(i) + " / " + values.get(j)+")");
                         } else {
                             if (str.length() < tmpMap.get(i / j).length()) {
-                                values.put(i / j, values.get(i) + " / " + values.get(j));
+                                values.put(i / j, "("+values.get(i) + " / " + values.get(j)+")");
                             }
                         }
                     }
                 }
             }
-            strN += N;
+            System.out.println(values.get(number));
+            if(10*number>Integer.valueOf(strN+N))strN += N;
+            if (values.containsKey(number)) {
+                if (values.get(number).length() - values.get(number).replaceAll(String.valueOf(N), "").length() <= 8) {
+                    break;
+                }
+            }
         }
 
+        System.out.println(values.get(number));
         for (char ch : values.get(number).toCharArray()) {
             if ((int) ch - '0' == N)
                 answer++;

@@ -6,11 +6,11 @@ public class Main {
 	// write your code here
         int n = 5;
         int number = 12;
-        int n2 = 5;
-        int number2 =2;
+        int n2 = 8;
+        int number2 =53;
 
         Solution sol = new Solution();
-        sol.solution(n,number);
+//        sol.solution(n,number);
         sol.solution(n2,number2);
 
     }
