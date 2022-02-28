@@ -1,19 +1,20 @@
 package com.company;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Solution {
 
     public int solution(int N, int number) {
-        HashMap<Integer, String> values = new HashMap<>();
+        TreeMap<Integer, String> values = new TreeMap<>();
         int answer = 0;
         String strN = Integer.toString(N);
 
         values.put(Integer.valueOf(strN), strN);
 
-        while (true) {
+        while (!values.containsKey(number)) {
             values.put(Integer.valueOf(strN), strN);
-            HashMap<Integer, String> tmpMap = (HashMap<Integer, String>) values.clone();
+            TreeMap<Integer, String> tmpMap = (TreeMap<Integer, String>) values.clone();
 
             for (int i : tmpMap.keySet()) {
                 for (int j : tmpMap.keySet()) {
@@ -69,7 +70,6 @@ public class Solution {
             }
         }
 
-        System.out.println(values.get(number));
         for (char ch : values.get(number).toCharArray()) {
             if ((int) ch - '0' == N)
                 answer++;
