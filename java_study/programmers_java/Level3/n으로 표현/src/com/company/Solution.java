@@ -11,7 +11,7 @@ public class Solution {
 
         values.put(Integer.valueOf(strN), strN);
 
-        while (!values.containsKey(number)) {
+        while (!values.containsKey(number)&&values.values().size()<number*number) {
             values.put(Integer.valueOf(strN), strN);
             HashMap<Integer, String> tmpMap = (HashMap<Integer, String>) values.clone();
 
@@ -60,13 +60,15 @@ public class Solution {
                     }
                 }
             }
-            if (number* number >= Integer.valueOf(strN + N)) strN += N;
+            strN += N;
         }
 
         for (char ch : values.get(number).toCharArray()) {
             if ((int) ch - '0' == N)
                 answer++;
         }
+
+        System.out.println(values.get(number));
 
         if (answer < 9)
             return answer;
