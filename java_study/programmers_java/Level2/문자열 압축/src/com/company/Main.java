@@ -9,8 +9,8 @@ public class Main {
         String s3 = "ababcdcdababcdcd";
 
         Solution sol = new Solution();
-//        System.out.println(sol.solution(s));
+        System.out.println(sol.solution("a"));
 //        System.out.println(sol.solution(s2));
-        System.out.println(sol.solution(s3));
+//        System.out.println(sol.solution(s3));
     }
 }
