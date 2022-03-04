@@ -11,14 +11,14 @@ public class Solution {
             // 이기는 경우
             if (flag) {
                 if (table[x][i]) {
-                    result.add(i);
+                    if(result.add(i))
                     DFS(table, i, 0, result);
                 }
             }
             // 지는 경우
             if (!flag) {
                 if (table[i][y]) {
-                    result.add(i);
+                    if(result.add(i))
                     DFS(table, 0, i, result);
                 }
             }
@@ -39,17 +39,17 @@ public class Solution {
 
         // 가로->세로 DFS
 
-        for (int i = 0; i < number; i++) {
-            flag=true;
-            DFS(table, i, 0, result);
-            flag=false;
-            DFS(table, 0, i, result);
-            if (result.size() == number - 1) {
-                answer++;
+            for (int i = 0; i < n; i++) {
+                flag = true;
+                DFS(table, i, 0, result);
+                flag = false;
+                DFS(table, 0, i, result);
+                if (result.size() == number - 1) {
+                    answer++;
+                }
+                System.out.println(result);
+                result.clear();
             }
-            result.clear();
-        }
-
 
         return answer;
     }
